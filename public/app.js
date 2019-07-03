@@ -39,9 +39,13 @@ $(document).on("click", "p", function() {
         // Place the title of the note in the title input
        // $("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
-      //  $("#bodyinput").val(data.note[0].body);
-        $("#savednotes").text(data.note[0].body);
+       $("#bodyinput").val(data.note[0].body);
+       for (var i = 0; i < data.note.length; i++) {
+        //     // Display the apropos information on the page
+            $("#savednotes").append("<p data-id='" + data.note[i]._id + "'>" + data.note[i].body+"</p>");
+        //$("#savednotes").text(data.note[0].body);
       }
+    }
     });
 });
 
