@@ -41,14 +41,14 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// A GET route for scraping the CNN sports website
 app.get("/", function (req, res) {
 	// First, we grab the body of the html with axios
 	axios.get("https://edition.cnn.com/sport").then(function (response) {
 		// Then, we load that into cheerio and save it to $ for a shorthand selector
 		var $ = cheerio.load(response.data);
 
-		// Now, we grab every h2 within an article tag, and do the following:
+		// Now, we grab every article tag of the main section, and do the following:
 		$("section.zn-sport-zone-1 ul.cn--idx-0 article").each(function (i, element) {
 			// Save an empty result object
 			var result = {};
@@ -56,7 +56,7 @@ app.get("/", function (req, res) {
 			// Add the text and href of every link, and save them as properties of the result object
 			result.title = $(element).find("span.cd__headline-text").text();
 			//result.short = $(element).find("p.contentItem__subhead").text();
-			result.link = $(element).find("a").attr("href");
+			result.link = "https://edition.cnn.com"+ $(element).find("a").attr("href");
 		
 
 			// Create a new Article using the `result` object built from scraping
@@ -73,7 +73,7 @@ app.get("/", function (req, res) {
 
 		// Send a message to the client
 		//res.send("Scrape Complete");
-		res.render("index");
+		res.redirect("/articles");
 	});
 });
 
@@ -82,8 +82,14 @@ app.get("/articles", function (req, res) {
 	// Grab every document in the Articles collection
 	db.Article.find({})
 		.then(function (dbArticle) {
+// var object = {
+// 	article:arti:{dbArticle}
+// }
+			
 			// If we were able to successfully find Articles, send them back to the client
-			res.json(dbArticle);
+			//res.json(dbArticle);
+			console.log({article:dbArticle});
+			res.render("articles", {article:dbArticle})
 		})
 		.catch(function (err) {
 			// If an error occurred, send it to the client
