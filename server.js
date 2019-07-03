@@ -31,31 +31,32 @@ app.engine("handlebars", expHandleBars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-require("./api-routes/burger_routes.js")(app);
+//require("./api-routes/burger_routes.js")(app);
 
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+
 // Routes
 
 // A GET route for scraping the echoJS website
-app.get("/scrape", function (req, res) {
+app.get("/", function (req, res) {
 	// First, we grab the body of the html with axios
-	axios.get("http://www.echojs.com/").then(function (response) {
+	axios.get("https://edition.cnn.com/sport").then(function (response) {
 		// Then, we load that into cheerio and save it to $ for a shorthand selector
 		var $ = cheerio.load(response.data);
 
 		// Now, we grab every h2 within an article tag, and do the following:
-		$("section.contentItem__content").each(function (i, element) {
+		$("section.zn-sport-zone-1 ul.cn--idx-0 article").each(function (i, element) {
 			// Save an empty result object
 			var result = {};
 
 			// Add the text and href of every link, and save them as properties of the result object
-			result.title = $(element).find("h1.contentItem__title").text();
-			result.short = $(element).find("p.contentItem__subhead").text();
-			resut.link = $(element).children().attr("href");
+			result.title = $(element).find("span.cd__headline-text").text();
+			//result.short = $(element).find("p.contentItem__subhead").text();
+			result.link = $(element).find("a").attr("href");
 		
 
 			// Create a new Article using the `result` object built from scraping
@@ -71,7 +72,8 @@ app.get("/scrape", function (req, res) {
 		});
 
 		// Send a message to the client
-		res.send("Scrape Complete");
+		//res.send("Scrape Complete");
+		res.render("index");
 	});
 });
 
