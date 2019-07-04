@@ -80,7 +80,7 @@ app.get("/", function (req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
 	// Grab every document in the Articles collection
-	db.Article.find({})
+	db.Article.find({}).sort({createdAt: -1})
 		.then(function (dbArticle) {
 // var object = {
 // 	article:arti:{dbArticle}
