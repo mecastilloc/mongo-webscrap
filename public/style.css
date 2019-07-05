@@ -13,10 +13,10 @@ color: orangered }
   width: 60%;
   height: 700px;
 }
-#notes {
+/* #notes {
   float: right;
   width: 30%;
-}
+} */
 textarea, input {
   display: block;
   width: 100%;
