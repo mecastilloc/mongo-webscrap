@@ -42,7 +42,7 @@ $(document).on("click", "#savenote", function() {
       //$("#notes").empty();
     });
     // Also, remove the values entered in the input and textarea for note entry and append new note
-getNotes(thisId);
+setTimeout (getNotes(thisId), 800);
     //  $("#savednotes").append("<p>" + thisBody+"</p>");
 //  $("#savednotes").append("<button type='button' data-artId='" + thisId +"' data-id='" + noteId + "' class='delNote'>Del</button>");
 //   $("#bodyinput").val("");
@@ -119,12 +119,10 @@ $("#savenote").attr("data-id",data._id);
        for (var i = 0; i < data.note.length; i++) {
         //     // Display the apropos information on the page
             $("#savednotes").append("<p data-id='" + data.note[i]._id + "'>" + data.note[i].body+"</p>");
-            $("#savednotes").append("<button data-artId='"+data._id+ "' data-id='" + data.note[i]._id + "' class='delNote'>Del</button>");
+            $("#savednotes").append("<button data-artId='"+data._id+ "' data-id='" + data.note[i]._id + "' class='btn btn-outline-danger btn-sm delNote'>Delete</button>");
             //$("#savednotes").text(data.note[0].body);
       }
     }
     });
-   
-    // $('exampleModalScrollable').modal('handleUpdate');
-    // $('exampleModalScrollable').modal('show')
+    
   }

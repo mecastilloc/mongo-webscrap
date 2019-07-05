@@ -1,6 +1,14 @@
+
+<div id="header">
+ 
+</div>
+<h1 id="headerText">Top News from  Arround the Globe</h1>
+
 <div id="wrapper">
+
+
       <div id="articleshb">
-      
+      <hr>
   {{#each article}}
   	
   	   {{!-- <p>{{this.title}}</p>
@@ -8,7 +16,9 @@
        <br> --}}
   	 <p data-id= {{this._id}}>{{this.title}}</p>
        <a href= {{this.link}}>{{this.link}}</a>
-       <button data-toggle="modal" data-target="#exampleModalScrollable" data-id= {{this._id}} type="button" class="getNotes btn btn-outline-warning btn-sm">See/Add Notes</button>
+       <p></p>
+            <button data-toggle="modal" data-target="#exampleModalScrollable" data-id= {{this._id}} type="button" class="getNotes btn btn-outline-warning btn-sm">See/Add Notes</button>
+<hr>
 {{/each}}
       </div>	
       
@@ -30,8 +40,8 @@
         <div id="notes"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id='savenote' type="button" class="btn btn-primary">Save Note</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+        <button id='savenote' type="button" class="btn btn-outline-success btn-sm">Save Note</button>
       </div>
     </div>
   </div>

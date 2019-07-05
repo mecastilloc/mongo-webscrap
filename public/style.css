@@ -1,18 +1,42 @@
 body { 
     background-color: black;
-color: orangered }
+color: rgb(255, 102, 0) }
+
+#header{
+  background-image: url("/images/header.png");
+  background-size: 960px 120px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: cover; */
+  display:flex;
+  margin: auto;
+ color: white;
+}
+#headerText{
+margin: auto;
+text-align: center;
+font-family: 'Lobster', cursive;
+}
+
 #wrapper {
-  width: 960px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 5%;
+  margin-top: 5px;
+  padding: 3% 5% 3% 5%;
 }
 #articleshb {
-  display: inline-block;
-  overflow: auto;
-  width: 60%;
-  height: 700px;
-}
+    overflow: auto;
+    border: 1px solid white;
+    border-radius: 5px;
+   padding: 1%;
+  }
+
+  #articleshb p{
+    margin: 0;
+  }
+
 /* #notes {
   float: right;
   width: 30%;
@@ -20,7 +44,8 @@ color: orangered }
 textarea, input {
   display: block;
   width: 100%;
-  background-color: #FCF5C7;
+  background-color: orange;
+  color: blue;
 }
 input {
   height: 36px;
@@ -29,4 +54,39 @@ input {
 textarea {
   height: 80px;
   /* font-size: 18px; */
+}
+
+
+.close{
+  color: red;
+}
+
+.modal-content {
+  background-color: black;
+  border: 1px solid white;
+}
+
+/* scrollbar css */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 102, 0); 
+  border-radius: 10px;
+   
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: greenyellow; 
 }
