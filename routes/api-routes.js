@@ -1,12 +1,12 @@
 var db = require("../models");
 var axios = require("axios");
 var cheerio = require("cheerio");
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var expHandleBars = require("express-handlebars");
+// var express = require("express");
+// var logger = require("morgan");
+// var mongoose = require("mongoose");
+// var expHandleBars = require("express-handlebars");
 
-var app = express();
+// var app = express();
 
 module.exports = function (app) {
 // // Routes

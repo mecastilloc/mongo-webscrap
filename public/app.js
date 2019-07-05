@@ -20,9 +20,9 @@ $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   let thisId = $(this).attr("data-id");
 
-//   if($("#bodyinput").val("")){
-// alert("You should type something")
-//   }
+  if(!$("#bodyinput").val()){
+alert("You should type something")
+  }
 // let thisBody= $("#bodyinput").val()
 // let noteId;
   // Run a POST request to change the note, using what's entered in the inputs
@@ -47,7 +47,10 @@ $(document).on("click", "#savenote", function() {
       
     })
     // Also, remove the values entered in the input and textarea for note entry and append new note
-  .then(getNotes(thisId));
+  //.then(function (thisId){
+
+    getNotes(thisId);
+ // });
     //  $("#savednotes").append("<p>" + thisBody+"</p>");
 //  $("#savednotes").append("<button type='button' data-artId='" + thisId +"' data-id='" + noteId + "' class='delNote'>Del</button>");
 //   $("#bodyinput").val("");
@@ -92,10 +95,7 @@ function getNotes(thisId){
   // Empty the notes from the note section
   
   $("#notes").empty();
-  console.log("get notes clicked");
-  // Save the id from the button tag
   
-
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
