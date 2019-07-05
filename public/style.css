@@ -41,6 +41,11 @@ font-family: 'Lobster', cursive;
     margin-bottom: 10px;
   }
 
+  
+
+a { 
+  color: gray } 
+
 /* #notes {
   float: right;
   width: 30%;
