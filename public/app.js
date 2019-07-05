@@ -19,6 +19,10 @@ $(document).on("click", ".getNotes", function() {
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   let thisId = $(this).attr("data-id");
+
+//   if($("#bodyinput").val("")){
+// alert("You should type something")
+//   }
 // let thisBody= $("#bodyinput").val()
 // let noteId;
   // Run a POST request to change the note, using what's entered in the inputs
@@ -35,14 +39,15 @@ $(document).on("click", "#savenote", function() {
     // With that done
     .then(function(data, thisId) {
       // Log the response
-      console.log("data despes de grabar "+data.note);
+     
       noteId = data.note._id
       thisId=thisId;
       // Empty the notes section
       //$("#notes").empty();
-    });
+      
+    })
     // Also, remove the values entered in the input and textarea for note entry and append new note
-setTimeout (getNotes(thisId), 800);
+  .then(getNotes(thisId));
     //  $("#savednotes").append("<p>" + thisBody+"</p>");
 //  $("#savednotes").append("<button type='button' data-artId='" + thisId +"' data-id='" + noteId + "' class='delNote'>Del</button>");
 //   $("#bodyinput").val("");
@@ -73,9 +78,10 @@ $(document).on("click", ".delNote", function() {
       console.log(data);
       
       
-    });
+    })
+    .then(getNotes(artId))
 //borrar de la lista
-getNotes(artId);
+// getNotes(artId);
 //  $("#savednotes").append("<p>" + thisBody+"</p>");
 //  $("#savednotes").append("<button data-id='" + noteId + "' class='delNote'>Del</button>");
        
@@ -106,10 +112,10 @@ function getNotes(thisId){
      $("#notes").append("<p id='savednotes'> </p>");
 
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' name='body' required></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       //$(".modal-footer").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-$("#savenote").attr("data-id",data._id);
+       $("#savenote").attr("data-id",data._id);
       // If there's a note in the article
       if (data.note) {
         // Place the title of the note in the title input
@@ -120,7 +126,6 @@ $("#savenote").attr("data-id",data._id);
         //     // Display the apropos information on the page
             $("#savednotes").append("<p data-id='" + data.note[i]._id + "'>" + data.note[i].body+"</p>");
             $("#savednotes").append("<button data-artId='"+data._id+ "' data-id='" + data.note[i]._id + "' class='btn btn-outline-danger btn-sm delNote'>Delete</button>");
-            //$("#savednotes").text(data.note[0].body);
       }
     }
     });
