@@ -49,7 +49,7 @@ alert("You should type something")
     // Also, remove the values entered in the input and textarea for note entry and append new note
   //.then(function (thisId){
 
-    getNotes(thisId);
+    setTimeout(getNotes(thisId), 5000);
  // });
     //  $("#savednotes").append("<p>" + thisBody+"</p>");
 //  $("#savednotes").append("<button type='button' data-artId='" + thisId +"' data-id='" + noteId + "' class='delNote'>Del</button>");
